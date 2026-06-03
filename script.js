@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initActiveNav();
   initContactForm();
   initFooterYear();
+  initParallax();
+  initCardTilt();
 });
 
 /* ============================================================
@@ -281,4 +283,50 @@ function clearError(el) {
 function initFooterYear() {
   const el = document.getElementById('footer-year');
   if (el) el.textContent = new Date().getFullYear();
+}
+
+/* ============================================================
+   PARALLAX NO HERO
+   ============================================================ */
+function initParallax() {
+  const hero = document.getElementById('hero');
+  if (!hero) return;
+  if (window.innerWidth <= 768) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    if (scrolled > window.innerHeight * 1.2) return;
+    hero.style.backgroundPositionY = `calc(center + ${scrolled * 0.25}px)`;
+  }, { passive: true });
+}
+
+/* ============================================================
+   TILT 3D NOS CARDS (desktop)
+   ============================================================ */
+function initCardTilt() {
+  if (window.matchMedia('(hover: none)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const cards = document.querySelectorAll(
+    '.produto-card:not(.produto-destaque), .diferencial-card, .mvv-card, .mercado-card'
+  );
+
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect  = card.getBoundingClientRect();
+      const x     = e.clientX - rect.left;
+      const y     = e.clientY - rect.top;
+      const tiltX = ((y - rect.height / 2) / (rect.height / 2)) * -5;
+      const tiltY = ((x - rect.width  / 2) / (rect.width  / 2)) *  5;
+      card.style.transition = 'transform 0.08s linear';
+      card.style.transform  = `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-6px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transition = 'transform 0.4s ease';
+      card.style.transform  = '';
+      setTimeout(() => { card.style.transition = ''; }, 400);
+    });
+  });
 }
