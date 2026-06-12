@@ -328,7 +328,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   padding-top: var(--header-h);
   background-image:
     linear-gradient(135deg, rgba(13,23,64,0.82) 0%, rgba(27,42,107,0.82) 50%, rgba(45,63,142,0.82) 100%),
-    url('https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?w=1920&q=80');
+    url('images/hero-bg.jpg');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -580,10 +580,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 #mvv {
   background-image:
-    linear-gradient(135deg, rgba(13,23,64,0.80), rgba(27,42,107,0.80)),
-    url('https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=1920&q=80');
+    linear-gradient(135deg, rgba(13,23,64,0.75), rgba(27,42,107,0.75)),
+    url('images/mvv-bg.jpg');
   background-size: cover;
-  background-position: center top;
+  background-position: center;
 }
 
 #diferenciais {
@@ -676,6 +676,19 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: var(--white);
   margin-inline: auto;
   margin-bottom: 1.25rem;
+}
+
+.sobre-logo-wrap {
+  margin-inline: auto;
+  margin-bottom: 1.25rem;
+  width: 140px;
+}
+
+.sobre-logo {
+  width: 100%;
+  height: auto;
+  filter: brightness(0) invert(1);
+  display: block;
 }
 
 .sobre-card-text {
@@ -989,17 +1002,19 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .mvv-card {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(10,18,60,0.72);
+  border: 1px solid rgba(255,255,255,0.18);
   border-radius: var(--radius);
   padding: 2.5rem 2rem;
   transition: var(--transition);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .mvv-card:hover {
-  background: rgba(255,255,255,0.10);
+  background: rgba(10,18,60,0.85);
   transform: translateY(-5px);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.20);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.40);
 }
 
 .mvv-icon {
@@ -1032,7 +1047,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 .mvv-card > p {
   font-size: 0.93rem;
-  color: rgba(255,255,255,0.72);
+  color: rgba(255,255,255,0.92);
   line-height: 1.7;
 }
 
@@ -1047,7 +1062,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   align-items: center;
   gap: 0.6rem;
   font-size: 0.93rem;
-  color: rgba(255,255,255,0.82);
+  color: rgba(255,255,255,0.95);
 }
 
 .valores-list li i {
@@ -1120,27 +1135,51 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    ============================================================ */
 .contato-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 4rem;
   align-items: start;
+  max-width: 700px;
+  margin-inline: auto;
+}
+
+.contato-info {
+  text-align: center;
+}
+
+.contato-info .section-label,
+.contato-info .section-title {
+  text-align: center;
 }
 
 .contato-desc {
   color: rgba(255,255,255,0.78);
   margin-bottom: 2rem;
   font-size: 0.98rem;
+  text-align: center;
 }
 
 .contato-items {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 1.25rem;
+  margin-inline: auto;
+}
+
+.contato-item--last {
+  grid-column: 1 / -1;
+  max-width: 50%;
+  margin-inline: auto;
+  width: 100%;
 }
 
 .contato-item {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
 }
 
 .contato-icon {
@@ -1525,7 +1564,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-  .contato-form-wrap { padding: 2rem 1.5rem; }
+  .contato-items { grid-template-columns: 1fr; }
 
   /* Footer */
   .footer-grid {
@@ -1577,8 +1616,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .mercado-destaque { padding: 1.25rem; }
 
   /* Contato */
-  .contato-form-wrap { padding: 1.75rem 1.25rem; }
-  .contato-items { gap: 1rem; }
+  .contato-items { gap: 0.75rem; }
 
   /* Footer */
   .footer-grid { grid-template-columns: 1fr; }
